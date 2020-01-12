@@ -19,14 +19,6 @@ public enum DidomiConsentStatus: String {
     case Deny = "deny"
 }
 
-protocol DidomiConsentManagerProtocol {
-    func checkConsentStatus()
-    func getConsentStatus() -> DidomiConsentStatus
-    func setConsentStatus(status: DidomiConsentStatus)
-    func showConsent()
-    
-}
-
 public class DidomiConsentManager : NSObject {
     
     // MARK - API
@@ -95,7 +87,7 @@ public class DidomiConsentManager : NSObject {
      - Important: This method should be run on main thread.
      */
     public class func showConsent() {
-        DidomiVisualConsentManager.shared.showConsentDialog(consent: consent) { (status: DidomiConsentStatus) -> () in
+        DidomiVisualConsentManager.shared.showConsentDialog() { (status: DidomiConsentStatus) -> () in
             DidomiConsentManager.setConsentStatus(status: status)
         }
     }
@@ -116,13 +108,9 @@ public class DidomiConsentManager : NSObject {
         }
     }
     
-    
-    
     // MARK - attributs
     
     private static var consentStatus = DidomiConsentStatus.Undefined
-    
-    private static let consent = DidomiConsent(consentTitle: "default", consentMassage: "default")
     
     private static let managerSerialQueue = DispatchQueue(label: DidomiConstants.ConsentManager.DispatchQueueLabel)
     

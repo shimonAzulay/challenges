@@ -16,14 +16,13 @@ struct DidomiNetworkResult {
 }
 
 struct DidomiNetworkConfiguration {
-    var reties: Int
-    var endpointURL: String
-    var dateFormat: DidomiNetworkDateFormat
+    var endpointURL: String!
+    var dateFormat: DidomiNetworkDateFormat!
 }
 
 // TODO - change to ISO8601UTC
 enum DidomiNetworkDateFormat: String {
-    case ISO8601UTC = "yyyyMMdd'T'HHmmssZ"
+    case ISO8601UTC = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
 }
 
 class DidomiNetworkManager: NSObject {
@@ -31,8 +30,8 @@ class DidomiNetworkManager: NSObject {
     // MARK - API
     
     /**
-    Call this to get a shared instance of DidomiNetworkManager.
-    */
+     Call this to get a shared instance of DidomiNetworkManager.
+     */
     static let shared = DidomiNetworkManager()
     
     // TODO enforce only known statuses
@@ -43,61 +42,85 @@ class DidomiNetworkManager: NSObject {
      - Parameter completion: Will be called on server response with DidomiNetworkResult
      */
     func sendConsentAsync(consentStatus: String, completion: @escaping (_ result: DidomiNetworkResult)->()) {
-        let url = URL(string: configuration.endpointURL)!
-        var request = URLRequest(url: url)
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = configuration.dateFormat.rawValue
-        dateFormatter.string(from: date)
-        let payloadJson: [String: String] = [
-            DidomiConstants.Network.PayloadConsentStatusKey: consentStatus,
-            DidomiConstants.Network.PayloadConsentDeviceIdKey: UIDevice.current.identifierForVendor?.uuidString ?? DidomiConstants.Device.defaultDeviceId,
-            DidomiConstants.Network.PayloadConsentDateKey: dateFormatter.string(from: date)
-        ]
-
-        let payloadJsonData = try? JSONSerialization.data(withJSONObject: payloadJson)
-        request.httpMethod = DidomiConstants.Network.PostRequest
-        request.setValue(DidomiConstants.Network.ContentHeaderJsonValue, forHTTPHeaderField: DidomiConstants.Network.ContentHeaderTypeKey)
-        request.httpBody = payloadJsonData
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            var statusCode: Int?
-            var errorString: String?
-            var responseString: String?
+        if let payloadData = buildPayloadData(consentStatus: consentStatus), let request = buildRequest(payloadData: payloadData) {
             
-            if let error = error {
-                errorString = error.localizedDescription
-                DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.Network.ResponseError) \(error)")
-            } else {
-                if let response = response as? HTTPURLResponse {
-                    statusCode = response.statusCode
-                    DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.Network.ResponseStatusCode) \(response.statusCode)")
+            // URLSessionDataTask
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                var statusCode: Int?
+                var errorString: String?
+                var responseString: String?
+                
+                if let error = error {
+                    errorString = error.localizedDescription
+                    DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.Network.ResponseError) \(error)")
+                } else {
+                    if let response = response as? HTTPURLResponse {
+                        statusCode = response.statusCode
+                        DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.Network.ResponseStatusCode) \(response.statusCode)")
+                    }
+                    if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                        responseString = dataString
+                        DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.Network.ResponseData) \(dataString)")
+                    }
                 }
-                if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    responseString = dataString
-                    DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.Network.ResponseData) \(dataString)")
-                }
+                completion(DidomiNetworkResult(sentConsentStatus: consentStatus, statusCode: statusCode, response: responseString, error: errorString))
             }
-            completion(DidomiNetworkResult(sentConsentStatus: consentStatus, statusCode: statusCode, response: responseString, error: errorString))
+            
+            task.resume()
         }
-        task.resume()
     }
+    
+    /*
+     For later use.
+     Lock or serial queue should be used to sync configuration data.
     
     /**
      Set new network configuration.
      - Parameter configuration: The new configuration.
      */
-    func setNetworkConfiguration(configuration: DidomiNetworkConfiguration) {
-        
+    
+    func setNetworkConfiguration(configuration: DidomiNetworkConfiguration!) {
+        if let endpointURL = configuration.endpointURL, let dateFormat = configuration.dateFormat {
+            self.configuration = DidomiNetworkConfiguration(endpointURL: endpointURL, dateFormat: dateFormat)
+        }
     }
+    */
     
     // MARK - private methods
     
     private override init() {
-        configuration = DidomiNetworkConfiguration(reties: 5, endpointURL: DidomiConstants.Network.EndpointURL, dateFormat: DidomiNetworkDateFormat(rawValue: DidomiConstants.Network.ISO8601UTC)!)
         super.init()
+    }
+    
+    func buildRequest(payloadData: Data) -> URLRequest? {
+        let url = URL(string: configuration.endpointURL)!
+        var request = URLRequest(url: url)
+        request.httpMethod = DidomiConstants.Network.PostRequest
+        request.setValue(DidomiConstants.Network.ContentHeaderJsonValue, forHTTPHeaderField: DidomiConstants.Network.ContentHeaderTypeKey)
+        request.httpBody = payloadData
+        return request
+        
+    }
+    
+    func buildPayloadData(consentStatus: String) -> Data? {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = configuration.dateFormat.rawValue
+        dateFormatter.string(from: date)
+        
+        let payloadJson: [String: String] = [
+            DidomiConstants.Network.PayloadConsentStatusKey: consentStatus,
+            DidomiConstants.Network.PayloadConsentDeviceIdKey: UIDevice.current.identifierForVendor?.uuidString ?? DidomiConstants.Device.defaultDeviceId,
+            DidomiConstants.Network.PayloadConsentDateKey: dateFormatter.string(from: date)
+        ]
+        
+        let payloadJsonData = try? JSONSerialization.data(withJSONObject: payloadJson)
+        
+        return payloadJsonData
     }
     
     // MARK - attributes
     
-    private var configuration: DidomiNetworkConfiguration
+    private var configuration = DidomiNetworkConfiguration(endpointURL: DidomiConstants.Network.EndpointURL, dateFormat: DidomiNetworkDateFormat(rawValue: DidomiConstants.Network.ISO8601UTC)!)
+    
 }

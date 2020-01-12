@@ -10,7 +10,6 @@
 		DF00570723C90AC900F9F678 /* DidomiConsent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF0056FD23C90AC900F9F678 /* DidomiConsent.framework */; };
 		DF00570C23C90AC900F9F678 /* DidomiConsentManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00570B23C90AC900F9F678 /* DidomiConsentManagerTests.swift */; };
 		DF00570E23C90AC900F9F678 /* DidomiConsent.h in Headers */ = {isa = PBXBuildFile; fileRef = DF00570023C90AC900F9F678 /* DidomiConsent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DF00571E23C90B1D00F9F678 /* DidomiConsent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00571823C90B1C00F9F678 /* DidomiConsent.swift */; };
 		DF00571F23C90B1D00F9F678 /* DidomiVisualConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00571A23C90B1C00F9F678 /* DidomiVisualConsentManager.swift */; };
 		DF00572023C90B1D00F9F678 /* DidomiPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00571B23C90B1D00F9F678 /* DidomiPersistenceManager.swift */; };
 		DF00572123C90B1D00F9F678 /* DidomiNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00571C23C90B1D00F9F678 /* DidomiNetworkManager.swift */; };
@@ -36,7 +35,6 @@
 		DF00570623C90AC900F9F678 /* DidomiConsentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DidomiConsentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF00570B23C90AC900F9F678 /* DidomiConsentManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidomiConsentManagerTests.swift; sourceTree = "<group>"; };
 		DF00570D23C90AC900F9F678 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DF00571823C90B1C00F9F678 /* DidomiConsent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DidomiConsent.swift; sourceTree = "<group>"; };
 		DF00571A23C90B1C00F9F678 /* DidomiVisualConsentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DidomiVisualConsentManager.swift; sourceTree = "<group>"; };
 		DF00571B23C90B1D00F9F678 /* DidomiPersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DidomiPersistenceManager.swift; sourceTree = "<group>"; };
 		DF00571C23C90B1D00F9F678 /* DidomiNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DidomiNetworkManager.swift; sourceTree = "<group>"; };
@@ -85,7 +83,6 @@
 		DF0056FF23C90AC900F9F678 /* DidomiConsent */ = {
 			isa = PBXGroup;
 			children = (
-				DF00571723C90B1C00F9F678 /* Models */,
 				DF00571923C90B1C00F9F678 /* Managers */,
 				DF00570123C90AC900F9F678 /* Info.plist */,
 				DF00570023C90AC900F9F678 /* DidomiConsent.h */,
@@ -102,14 +99,6 @@
 				DF00570D23C90AC900F9F678 /* Info.plist */,
 			);
 			path = DidomiConsentTests;
-			sourceTree = "<group>";
-		};
-		DF00571723C90B1C00F9F678 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				DF00571823C90B1C00F9F678 /* DidomiConsent.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		DF00571923C90B1C00F9F678 /* Managers */ = {
@@ -239,7 +228,6 @@
 				DF00572123C90B1D00F9F678 /* DidomiNetworkManager.swift in Sources */,
 				DF00571F23C90B1D00F9F678 /* DidomiVisualConsentManager.swift in Sources */,
 				DF00572023C90B1D00F9F678 /* DidomiPersistenceManager.swift in Sources */,
-				DF00571E23C90B1D00F9F678 /* DidomiConsent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

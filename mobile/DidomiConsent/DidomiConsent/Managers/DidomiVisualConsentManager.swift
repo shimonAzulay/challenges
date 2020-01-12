@@ -13,8 +13,8 @@ class DidomiVisualConsentManager: NSObject {
     // MARK - API
     
     /**
-    Call this to get a shared instance of DidomiVisualConsentManager.
-    */
+     Call this to get a shared instance of DidomiVisualConsentManager.
+     */
     static let shared = DidomiVisualConsentManager()
     
     /**
@@ -23,32 +23,62 @@ class DidomiVisualConsentManager: NSObject {
      - Parameter consent: The consent to show.
      - Parameter callback: The consent status given by the user.
      */
-    func showConsentDialog(consent: DidomiConsent, callback: @escaping (_ status: DidomiConsentStatus) -> ()) {
-        let alert = UIAlertController(title: consent.consentTitle, message: consent.consentMassage, preferredStyle: .alert)
-                
-        let acceptAction = UIAlertAction(title: DidomiConstants.ConsentDialog.AcceptButtonText, style: .default) { (action: UIAlertAction) in
-            callback(.Accept)
-            self.closeConsentWindow()
-        }
-        let denyAction = UIAlertAction(title: DidomiConstants.ConsentDialog.DenyButtonText, style: .default) { (action: UIAlertAction) in
-            callback(.Deny)
-            self.closeConsentWindow()
+    func showConsentDialog(callback: @escaping (_ status: DidomiConsentStatus) -> ()) {
+        
+        if let consentTitle = loadConsentTitle(), let consentMessage = loadConsentMessage() {
+            let alert = UIAlertController(title: consentTitle, message: consentMessage, preferredStyle: .alert)
+             
+             let acceptAction = UIAlertAction(title: DidomiConstants.ConsentDialog.AcceptButtonText, style: .default) { (action: UIAlertAction) in
+                 callback(.Accept)
+                 self.closeConsentWindow()
+             }
+             let denyAction = UIAlertAction(title: DidomiConstants.ConsentDialog.DenyButtonText, style: .default) { (action: UIAlertAction) in
+                 callback(.Deny)
+                 self.closeConsentWindow()
+             }
+             
+             alert.addAction(acceptAction)
+             alert.addAction(denyAction)
+             
+             DispatchQueue.main.async {
+                 self.prepareConsentWindow()
+                 self.window?.rootViewController?.present(alert, animated: true)
+             }
+        } else {
+            DidomiLogManager.shared.log(logMessage: DidomiConstants.VisualConsetManager.RetriveConsentStringsError)
         }
         
-        alert.addAction(acceptAction)
-        alert.addAction(denyAction)
-        
-        DispatchQueue.main.async {
-            self.prepareConsentWindow()
-                // TODO check errors
-            self.window?.rootViewController?.present(alert, animated: true)
-        }
+ 
     }
     
     // MARK - private methods
     
     private override init() {
         super.init()
+    }
+    
+    func loadConsentTitle() -> String? {
+        return loadFromLocalizable(key: DidomiConstants.VisualConsetManager.ConsentTitleKey)
+    }
+    
+    func loadConsentMessage() -> String? {
+        return loadFromLocalizable(key: DidomiConstants.VisualConsetManager.ConsentMessageKey)
+    }
+    
+    func loadFromLocalizable(key: String) -> String? {
+        var result = Bundle.main.localizedString(forKey: key, value: nil, table: nil)
+        
+        if result == key {
+            // Key has not been found on the Localizable table, Try on Default table.
+            result = Bundle.main.localizedString(forKey: key, value: nil, table: DidomiConstants.VisualConsetManager.DefaultStringsTable)
+        }
+        
+        if result == key {
+            // Key has not been found on the Default table.
+            return nil
+        }
+        
+        return result
     }
     
     func prepareConsentWindow() {
@@ -59,22 +89,21 @@ class DidomiVisualConsentManager: NSObject {
             if let windowScene = windowScenes.first as? UIWindowScene {
                 window = UIWindow(windowScene: windowScene)
             } else {
-                // No scenes found
-                 window = UIWindow(frame: UIScreen.main.bounds)
+                DidomiLogManager.shared.log(logMessage: DidomiConstants.VisualConsetManager.SceneError)
+                return
             }
         } else {
             // In case of iOS version < 13.
             window = UIWindow(frame: UIScreen.main.bounds)
         }
-
+        
         window?.backgroundColor = .clear
         window?.windowLevel += 1
         window?.rootViewController = UIViewController()
         window?.makeKeyAndVisible()
     }
-    // TODO this is the best way?
+
     func closeConsentWindow() {
-        window?.isHidden = true
         window = nil
     }
     

@@ -15,6 +15,8 @@
 		DF00588A23CA0CA000F9F678 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF00588823CA0CA000F9F678 /* LaunchScreen.storyboard */; };
 		DF0058AF23CA0CAD00F9F678 /* DidomiConsent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF0058AE23CA0CAD00F9F678 /* DidomiConsent.framework */; };
 		DF0058B023CA0CAD00F9F678 /* DidomiConsent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DF0058AE23CA0CAD00F9F678 /* DidomiConsent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DF53011C23CB7D0000183E87 /* Default.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF53011E23CB7D0000183E87 /* Default.strings */; };
+		DF53012123CB7D9400183E87 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF53012323CB7D9400183E87 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		DF00589023CA0CA100F9F678 /* TestAppIOS13Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestAppIOS13Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF00589B23CA0CA100F9F678 /* TestAppIOS13UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestAppIOS13UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF0058AE23CA0CAD00F9F678 /* DidomiConsent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DidomiConsent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF53011D23CB7D0000183E87 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Default.strings; sourceTree = "<group>"; };
+		DF53012223CB7D9400183E87 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,8 @@
 				DF00588623CA0CA000F9F678 /* Assets.xcassets */,
 				DF00588823CA0CA000F9F678 /* LaunchScreen.storyboard */,
 				DF00588B23CA0CA000F9F678 /* Info.plist */,
+				DF53011E23CB7D0000183E87 /* Default.strings */,
+				DF53012323CB7D9400183E87 /* Localizable.strings */,
 			);
 			path = TestAppIOS13;
 			sourceTree = "<group>";
@@ -235,6 +241,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF53012123CB7D9400183E87 /* Localizable.strings in Resources */,
+				DF53011C23CB7D0000183E87 /* Default.strings in Resources */,
 				DF00588A23CA0CA000F9F678 /* LaunchScreen.storyboard in Resources */,
 				DF00588723CA0CA000F9F678 /* Assets.xcassets in Resources */,
 				DF00588523CA0CA000F9F678 /* Main.storyboard in Resources */,
@@ -312,6 +320,22 @@
 				DF00588923CA0CA000F9F678 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		DF53011E23CB7D0000183E87 /* Default.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF53011D23CB7D0000183E87 /* en */,
+			);
+			name = Default.strings;
+			sourceTree = "<group>";
+		};
+		DF53012323CB7D9400183E87 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF53012223CB7D9400183E87 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
