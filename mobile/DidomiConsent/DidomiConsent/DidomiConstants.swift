@@ -27,7 +27,6 @@ struct DidomiConstants {
     
     struct Persistence {
         static let PersistenceConsentStatusKey = "DidomiConsentStatus"
-        
     }
     
     struct Device {
@@ -38,7 +37,4 @@ struct DidomiConstants {
         static let AcceptButtonText = "ACCEPT"
         static let DenyButtonText = "DENY"
     }
-    
-    
-    
 }

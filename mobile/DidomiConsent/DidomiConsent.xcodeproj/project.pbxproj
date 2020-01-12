@@ -83,11 +83,11 @@
 		DF0056FF23C90AC900F9F678 /* DidomiConsent */ = {
 			isa = PBXGroup;
 			children = (
-				DF00571D23C90B1D00F9F678 /* DidomiConsentManager.swift */,
 				DF00571723C90B1C00F9F678 /* Models */,
 				DF00571923C90B1C00F9F678 /* Managers */,
-				DF00570023C90AC900F9F678 /* DidomiConsent.h */,
 				DF00570123C90AC900F9F678 /* Info.plist */,
+				DF00570023C90AC900F9F678 /* DidomiConsent.h */,
+				DF00571D23C90B1D00F9F678 /* DidomiConsentManager.swift */,
 				DF0058B423CA349500F9F678 /* DidomiConstants.swift */,
 			);
 			path = DidomiConsent;

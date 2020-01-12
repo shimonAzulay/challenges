@@ -8,20 +8,32 @@
 
 import UIKit
 
-public struct DidomiNetworkResult {
-    
+struct DidomiNetworkResult {
+    var statusCode: Int
+    var response: String
+    var error: String
 }
 
-public struct DidomiNetworkConfiguration {
-    public var reties: Int
+struct DidomiNetworkConfiguration {
+    var reties: Int
 }
 
 class DidomiNetworkManager: NSObject {
     
     // MARK - API
     
+    /**
+    Call this to get a shared instance of DidomiNetworkManager.
+    */
     static let shared = DidomiNetworkManager()
-
+    
+    // TODO enforce only known statuses
+    
+    /**
+     Send consent status to server asynchronous.
+     - Parameter consentStatus: The consent status string.
+     - Parameter completion: Will be called on server response with DidomiNetworkResult
+     */
     func sendConsentAsync(consentStatus: String, completion: (_ result: DidomiNetworkResult)->()) {
         let url = URL(string: DidomiConstants.Network.EndpointURL)!
         var request = URLRequest(url: url)
@@ -29,7 +41,7 @@ class DidomiNetworkManager: NSObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = DidomiConstants.Network.ISO8601UTC
         dateFormatter.string(from: date)
-        let json: [String: Any] = [
+        let json: [String: String] = [
             DidomiConstants.Network.PayloadConsentStatusKey: consentStatus,
             DidomiConstants.Network.PayloadConsentDeviceIdKey: UIDevice.current.identifierForVendor?.uuidString ?? DidomiConstants.Device.defaultDeviceId,
             DidomiConstants.Network.PayloadConsentDateKey: dateFormatter.string(from: date)
@@ -50,17 +62,17 @@ class DidomiNetworkManager: NSObject {
                     print("data: \(dataString)")
                 }
             }
+            // TODO call complition handler
         }
         task.resume()
     }
     
-    func sendConsentSync(consent: DidomiConsent) -> DidomiNetworkResult {
-        return DidomiNetworkResult()
-    }
-    
+    /**
+     Set new network configuration.
+     - Parameter configuration: The new configuration.
+     */
     func setNetworkConfiguration(configuration: DidomiNetworkConfiguration) {
         // Check null
-        
     }
     
     // MARK - private methods
