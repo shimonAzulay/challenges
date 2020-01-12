@@ -15,12 +15,6 @@ struct DidomiNetworkResult {
     var error: String?
 }
 
-struct DidomiNetworkConfiguration {
-    var endpointURL: String!
-    var dateFormat: DidomiNetworkDateFormat!
-}
-
-// TODO - change to ISO8601UTC
 enum DidomiNetworkDateFormat: String {
     case ISO8601UTC = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
 }
@@ -41,8 +35,8 @@ class DidomiNetworkManager: NSObject {
      - Parameter consentStatus: The consent status string.
      - Parameter completion: Will be called on server response with DidomiNetworkResult
      */
-    func sendConsentAsync(consentStatus: String, completion: @escaping (_ result: DidomiNetworkResult)->()) {
-        if let payloadData = buildPayloadData(consentStatus: consentStatus), let request = buildRequest(payloadData: payloadData) {
+    func sendConsentAsync(consentStatus: String, url: String, completion: @escaping (_ result: DidomiNetworkResult)->()) {
+        if let payloadData = buildPayloadData(consentStatus: consentStatus), let request = buildRequest(payloadData: payloadData, url: url) {
             
             // URLSessionDataTask
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -67,45 +61,33 @@ class DidomiNetworkManager: NSObject {
             }
             
             task.resume()
+        } else {
+            completion(DidomiNetworkResult(sentConsentStatus: consentStatus, statusCode: nil, response: nil, error: DidomiConstants.Network.BadConfigurationError))
         }
     }
-    
-    /*
-     For later use.
-     Lock or serial queue should be used to sync configuration data.
-    
-    /**
-     Set new network configuration.
-     - Parameter configuration: The new configuration.
-     */
-    
-    func setNetworkConfiguration(configuration: DidomiNetworkConfiguration!) {
-        if let endpointURL = configuration.endpointURL, let dateFormat = configuration.dateFormat {
-            self.configuration = DidomiNetworkConfiguration(endpointURL: endpointURL, dateFormat: dateFormat)
-        }
-    }
-    */
-    
+
     // MARK - private methods
     
     private override init() {
         super.init()
     }
     
-    func buildRequest(payloadData: Data) -> URLRequest? {
-        let url = URL(string: configuration.endpointURL)!
-        var request = URLRequest(url: url)
-        request.httpMethod = DidomiConstants.Network.PostRequest
-        request.setValue(DidomiConstants.Network.ContentHeaderJsonValue, forHTTPHeaderField: DidomiConstants.Network.ContentHeaderTypeKey)
-        request.httpBody = payloadData
-        return request
+    func buildRequest(payloadData: Data, url: String) -> URLRequest? {
+        if let url = URL(string: url) {
+            var request = URLRequest(url: url)
+            request.httpMethod = DidomiConstants.Network.PostRequest
+            request.setValue(DidomiConstants.Network.ContentHeaderJsonValue, forHTTPHeaderField: DidomiConstants.Network.ContentHeaderTypeKey)
+            request.httpBody = payloadData
+            return request
+        }
         
+        return nil
     }
     
     func buildPayloadData(consentStatus: String) -> Data? {
         let date = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = configuration.dateFormat.rawValue
+        dateFormatter.dateFormat = DidomiConstants.Network.ISO8601UTC
         dateFormatter.string(from: date)
         
         let payloadJson: [String: String] = [
@@ -118,9 +100,4 @@ class DidomiNetworkManager: NSObject {
         
         return payloadJsonData
     }
-    
-    // MARK - attributes
-    
-    private var configuration = DidomiNetworkConfiguration(endpointURL: DidomiConstants.Network.EndpointURL, dateFormat: DidomiNetworkDateFormat(rawValue: DidomiConstants.Network.ISO8601UTC)!)
-    
 }

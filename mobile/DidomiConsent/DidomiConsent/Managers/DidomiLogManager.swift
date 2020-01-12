@@ -28,8 +28,10 @@ class DidomiLogManager: NSObject {
     /**
      This is a basic log function
      */
-    func log(logMessage: String) {
-        print(logMessage)
+    func log(logMessage: String?) {
+        if let logMessage = logMessage {
+            print(logMessage)
+        }
     }
     
     /*

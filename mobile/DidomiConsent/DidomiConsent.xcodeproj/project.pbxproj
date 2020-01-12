@@ -16,6 +16,7 @@
 		DF00572223C90B1D00F9F678 /* DidomiConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00571D23C90B1D00F9F678 /* DidomiConsentManager.swift */; };
 		DF0058B523CA349500F9F678 /* DidomiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0058B423CA349500F9F678 /* DidomiConstants.swift */; };
 		DF0058B923CB350D00F9F678 /* DidomiLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0058B823CB350D00F9F678 /* DidomiLogManager.swift */; };
+		DF53012523CB9A7600183E87 /* DidomiNetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF53012423CB9A7600183E87 /* DidomiNetworkManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		DF00571D23C90B1D00F9F678 /* DidomiConsentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DidomiConsentManager.swift; sourceTree = "<group>"; };
 		DF0058B423CA349500F9F678 /* DidomiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidomiConstants.swift; sourceTree = "<group>"; };
 		DF0058B823CB350D00F9F678 /* DidomiLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidomiLogManager.swift; sourceTree = "<group>"; };
+		DF53012423CB9A7600183E87 /* DidomiNetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidomiNetworkManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				DF00570B23C90AC900F9F678 /* DidomiConsentManagerTests.swift */,
+				DF53012423CB9A7600183E87 /* DidomiNetworkManagerTests.swift */,
 				DF00570D23C90AC900F9F678 /* Info.plist */,
 			);
 			path = DidomiConsentTests;
@@ -235,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF53012523CB9A7600183E87 /* DidomiNetworkManagerTests.swift in Sources */,
 				DF00570C23C90AC900F9F678 /* DidomiConsentManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

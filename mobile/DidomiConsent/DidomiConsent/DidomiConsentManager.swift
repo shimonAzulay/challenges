@@ -65,7 +65,7 @@ public class DidomiConsentManager : NSObject {
             DidomiPersistenceManager.shared.persisteConsentStatus(consentStatus: status.rawValue)
             
             // Notify server
-            DidomiNetworkManager.shared.sendConsentAsync(consentStatus: consentStatus.rawValue) { (result: DidomiNetworkResult) in
+            DidomiNetworkManager.shared.sendConsentAsync(consentStatus: consentStatus.rawValue, url: DidomiConstants.Network.EndpointURL) { (result: DidomiNetworkResult) in
                 if let statusCode = result.statusCode {
                     // Successful response
                     if 200 ... 299 ~= statusCode, let consentStatus = result.sentConsentStatus {
