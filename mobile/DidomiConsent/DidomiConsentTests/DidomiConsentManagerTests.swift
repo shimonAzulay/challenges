@@ -14,38 +14,77 @@ class DidomiConsentManagerTests: XCTestCase {
     class DidomiConsentManagerMock : DidomiConsentManager {
         
         static var showConsentCalled = false
+        static var retriveConsentStatusCalled = false
+        static var persisteConsentStatusCalled = false
+        static var sendConsentStatusToServerCalled = false
+        static var persistedConsentStatus = DidomiConsentStatus.Undefined
         
-        override static func showConsent() {
+        override class func showConsent() {
             showConsentCalled = true
+        }
+        
+        override class func retriveConsentStatus() -> DidomiConsentStatus {
+            retriveConsentStatusCalled = true
+            return persistedConsentStatus
+        }
+        
+        override class func persisteConsentStatus(status: String) {
+            persisteConsentStatusCalled = true
+            persistedConsentStatus = DidomiConsentStatus(rawValue: status) ?? .Undefined
+        }
+        
+        override class func sendConsentStatusToServer(consentStatus: String) {
+            sendConsentStatusToServerCalled = true
         }
     }
     
+    override class func tearDown() {
+        DidomiConsentManagerMock.showConsentCalled = false
+        DidomiConsentManagerMock.retriveConsentStatusCalled = false
+        DidomiConsentManagerMock.persisteConsentStatusCalled = false
+        DidomiConsentManagerMock.sendConsentStatusToServerCalled = false
+        DidomiConsentManagerMock.persistedConsentStatus = DidomiConsentStatus.Undefined
+    }
+    
     func testSetGetConsentStatus() {
-        DidomiConsentManager.setConsentStatus(status: .Undefined)
-        XCTAssertEqual(DidomiConsentManager.getConsentStatus(), .Undefined)
+        DidomiConsentManagerMock.setConsentStatus(status: .Undefined)
+        XCTAssertEqual(DidomiConsentManagerMock.getConsentStatus(), .Undefined)
+        XCTAssertTrue(DidomiConsentManagerMock.sendConsentStatusToServerCalled)
+        XCTAssertTrue(DidomiConsentManagerMock.persisteConsentStatusCalled)
         
-        DidomiConsentManager.setConsentStatus(status: .Accept)
-        XCTAssertEqual(DidomiConsentManager.getConsentStatus(), .Accept)
+        tearDown()
         
-        DidomiConsentManager.setConsentStatus(status: .Deny)
-        XCTAssertEqual(DidomiConsentManager.getConsentStatus(), .Deny)
+        DidomiConsentManagerMock.setConsentStatus(status: .Accept)
+        XCTAssertEqual(DidomiConsentManagerMock.getConsentStatus(), .Accept)
+        XCTAssertTrue(DidomiConsentManagerMock.sendConsentStatusToServerCalled)
+        XCTAssertTrue(DidomiConsentManagerMock.persisteConsentStatusCalled)
+        
+        tearDown()
+        
+        DidomiConsentManagerMock.setConsentStatus(status: .Deny)
+        XCTAssertEqual(DidomiConsentManagerMock.getConsentStatus(), .Deny)
+        XCTAssertTrue(DidomiConsentManagerMock.sendConsentStatusToServerCalled)
+        XCTAssertTrue(DidomiConsentManagerMock.persisteConsentStatusCalled)
     }
 
     func testCheckConsentStatusUndefined() {
-        DidomiConsentManagerMock.setConsentStatus(status: .Undefined)
+        DidomiConsentManagerMock.persistedConsentStatus = .Undefined
         DidomiConsentManagerMock.checkConsetStatusInternal()
         XCTAssertTrue(DidomiConsentManagerMock.showConsentCalled)
+        XCTAssertTrue(DidomiConsentManagerMock.retriveConsentStatusCalled)
     }
     
     func testCheckConsentStatusAccept() {
-        DidomiConsentManagerMock.setConsentStatus(status: .Accept)
+        DidomiConsentManagerMock.persistedConsentStatus = .Accept
         DidomiConsentManagerMock.checkConsetStatusInternal()
         XCTAssertFalse(DidomiConsentManagerMock.showConsentCalled)
+        XCTAssertTrue(DidomiConsentManagerMock.retriveConsentStatusCalled)
     }
     
     func testCheckConsentStatusDeny() {
-        DidomiConsentManagerMock.setConsentStatus(status: .Deny)
+        DidomiConsentManagerMock.persistedConsentStatus = .Deny
         DidomiConsentManagerMock.checkConsetStatusInternal()
         XCTAssertFalse(DidomiConsentManagerMock.showConsentCalled)
+        XCTAssertTrue(DidomiConsentManagerMock.retriveConsentStatusCalled)
     }
 }

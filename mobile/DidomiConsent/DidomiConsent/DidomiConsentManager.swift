@@ -61,21 +61,10 @@ open class DidomiConsentManager : NSObject {
         managerSerialQueue.sync {
             self.consentStatus = status
             DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.ConsentManager.ConsentChanged) \(consentStatus.rawValue)")
-            DidomiPersistenceManager.shared.persisteConsentStatus(consentStatus: status.rawValue)
+            self.persisteConsentStatus(status: status.rawValue)
             
             // Notify server
-            DidomiNetworkManager.shared.sendConsentAsync(consentStatus: consentStatus.rawValue, url: DidomiConstants.Network.EndpointURL) { (result: DidomiNetworkResult) in
-                if let statusCode = result.statusCode {
-                    // Successful response
-                    if 200 ... 299 ~= statusCode, let consentStatus = result.sentConsentStatus {
-                        DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.ConsentManager.ConsentStatusSentToServer) \(consentStatus)")
-                    }
-                } else if let consentStatus = result.sentConsentStatus {
-                    // Unsuccessful response
-                    DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.ConsentManager.ConsentStatusSendToServerError) \(consentStatus)")
-                }
-                
-            }
+            self.sendConsentStatusToServer(consentStatus: status.rawValue)
         }
     }
     
@@ -99,7 +88,7 @@ open class DidomiConsentManager : NSObject {
     
     @objc static func checkConsetStatusInternal() {
         managerSerialQueue.sync {
-            self.consentStatus = DidomiConsentStatus(rawValue: DidomiPersistenceManager.shared.retriveConsentStatus()) ?? .Undefined
+            self.consentStatus = self.retriveConsentStatus()
         }
         
         if (getConsentStatus() == .Undefined) {
@@ -113,4 +102,29 @@ open class DidomiConsentManager : NSObject {
     
     private static let managerSerialQueue = DispatchQueue(label: DidomiConstants.ConsentManager.DispatchQueueLabel)
     
+    
+    // MARK - call managers
+    class func persisteConsentStatus(status: String) {
+        DidomiPersistenceManager.shared.persisteConsentStatus(consentStatus: status, forKey: DidomiConstants.Persistence.PersistenceConsentStatusKey)
+    }
+    
+    class func retriveConsentStatus() -> DidomiConsentStatus {
+        return DidomiConsentStatus(rawValue: DidomiPersistenceManager.shared.retriveConsentStatus(forKey: DidomiConstants.Persistence.PersistenceConsentStatusKey)) ?? .Undefined
+    }
+    
+    class func sendConsentStatusToServer(consentStatus: String) {
+        
+        DidomiNetworkManager.shared.sendConsentAsync(consentStatus: consentStatus, url: DidomiConstants.Network.EndpointURL) { (result: DidomiNetworkResult) in
+            if let statusCode = result.statusCode {
+                // Successful response
+                if 200 ... 299 ~= statusCode, let consentStatus = result.sentConsentStatus {
+                    DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.ConsentManager.ConsentStatusSentToServer) \(consentStatus)")
+                }
+            } else if let consentStatus = result.sentConsentStatus {
+                // Unsuccessful response
+                DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.ConsentManager.ConsentStatusSendToServerError) \(consentStatus)")
+            }
+            
+        }
+    }
 }

@@ -17,6 +17,7 @@
 		DF0058B523CA349500F9F678 /* DidomiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0058B423CA349500F9F678 /* DidomiConstants.swift */; };
 		DF0058B923CB350D00F9F678 /* DidomiLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0058B823CB350D00F9F678 /* DidomiLogManager.swift */; };
 		DF53012523CB9A7600183E87 /* DidomiNetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF53012423CB9A7600183E87 /* DidomiNetworkManagerTests.swift */; };
+		DF53012923CBD29B00183E87 /* DidomiPersistenceManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF53012823CBD29B00183E87 /* DidomiPersistenceManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		DF0058B423CA349500F9F678 /* DidomiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidomiConstants.swift; sourceTree = "<group>"; };
 		DF0058B823CB350D00F9F678 /* DidomiLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidomiLogManager.swift; sourceTree = "<group>"; };
 		DF53012423CB9A7600183E87 /* DidomiNetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidomiNetworkManagerTests.swift; sourceTree = "<group>"; };
+		DF53012823CBD29B00183E87 /* DidomiPersistenceManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidomiPersistenceManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				DF00570B23C90AC900F9F678 /* DidomiConsentManagerTests.swift */,
 				DF53012423CB9A7600183E87 /* DidomiNetworkManagerTests.swift */,
+				DF53012823CBD29B00183E87 /* DidomiPersistenceManagerTests.swift */,
 				DF00570D23C90AC900F9F678 /* Info.plist */,
 			);
 			path = DidomiConsentTests;
@@ -239,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF53012523CB9A7600183E87 /* DidomiNetworkManagerTests.swift in Sources */,
+				DF53012923CBD29B00183E87 /* DidomiPersistenceManagerTests.swift in Sources */,
 				DF00570C23C90AC900F9F678 /* DidomiConsentManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

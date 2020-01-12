@@ -19,9 +19,9 @@ class DidomiPersistenceManager: NSObject {
      Persiste consent status.
      - Parameter consentStatus: The consent status to persiste.
      */
-    func persisteConsentStatus(consentStatus: String) {
+    func persisteConsentStatus(consentStatus: String, forKey: String) {
         let defaults = UserDefaults.standard
-        defaults.set(consentStatus, forKey: DidomiConstants.Persistence.PersistenceConsentStatusKey)
+        defaults.set(consentStatus, forKey: forKey)
         defaults.synchronize()
         DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.Persistence.ConsentPersisted) \(consentStatus)")
     }
@@ -30,9 +30,9 @@ class DidomiPersistenceManager: NSObject {
      Retrive persistent consent status string.
      - Returns: Persistent consent status string.
      */
-    func retriveConsentStatus() -> String {
+    func retriveConsentStatus(forKey: String) -> String {
         let defaults = UserDefaults.standard
-        let consentStatus = defaults.string(forKey: DidomiConstants.Persistence.PersistenceConsentStatusKey) ?? DidomiConstants.ConsentStatusStrings.Undefined
+        let consentStatus = defaults.string(forKey: forKey) ?? DidomiConstants.ConsentStatusStrings.Undefined
         defaults.synchronize()
         DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.Persistence.ConsentRetrived) \(consentStatus)")
         
