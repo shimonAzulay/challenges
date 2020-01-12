@@ -13,7 +13,7 @@ struct DidomiConstants {
         static let Deny = "deny"
         static let Undefined = "undefined"
     }
-    
+
     struct Network {
         static let EndpointURL = "http://www.mocky.io/v2/5e14e8122d00002b00167430"
         static let ISO8601UTC = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
