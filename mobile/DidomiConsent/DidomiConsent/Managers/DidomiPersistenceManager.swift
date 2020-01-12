@@ -27,6 +27,7 @@ class DidomiPersistenceManager: NSObject {
         let defaults = UserDefaults.standard
         defaults.set(consentStatus, forKey: DidomiConstants.Persistence.PersistenceConsentStatusKey)
         defaults.synchronize()
+        DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.Persistence.ConsentPersisted) \(consentStatus)")
     }
     
     /**
@@ -37,6 +38,7 @@ class DidomiPersistenceManager: NSObject {
         let defaults = UserDefaults.standard
         let consentStatus = defaults.string(forKey: DidomiConstants.Persistence.PersistenceConsentStatusKey) ?? DidomiConstants.ConsentStatusStrings.Undefined
         defaults.synchronize()
+        DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.Persistence.ConsentRetrived) \(consentStatus)")
         
         return consentStatus
     }

@@ -23,10 +23,17 @@ struct DidomiConstants {
         static let PayloadConsentStatusKey = "status"
         static let PayloadConsentDeviceIdKey = "device_id"
         static let PayloadConsentDateKey = "date"
+        static let ResponseError = "Respose error:"
+        static let ResponseStatusCode = "Respose status code:"
+        static let ResponseData = "Respose data:"
     }
     
     struct Persistence {
         static let PersistenceConsentStatusKey = "DidomiConsentStatus"
+        static let ConsentPersisted = "Consent status has persisted. Persisted consent status:"
+        static let ConsentRetrived = "Consent status has retrived. Retrived consent status:"
+        static let ConsentPersisteError = "Consent status has not persisted due to an error."
+        static let ConsentRetrivedError = "Consent status has not retrived due to an error."
     }
     
     struct Device {
@@ -36,5 +43,12 @@ struct DidomiConstants {
     struct ConsentDialog {
         static let AcceptButtonText = "ACCEPT"
         static let DenyButtonText = "DENY"
+    }
+    
+    struct ConsentManager {
+        static let ConsentStatusSentToServer = "Consent status has sent to server. Sent status:"
+        static let ConsentStatusSendToServerError = "Consent status has not sent to server due to an error."
+        static let ConsentChanged = "Consent status has changed. New status:"
+        //static let StatusCode = "Consent status has changed. New status:"
     }
 }

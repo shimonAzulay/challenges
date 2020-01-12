@@ -43,8 +43,6 @@ class DidomiVisualConsentManager: NSObject {
                 // TODO check errors
             self.window?.rootViewController?.present(alert, animated: true)
         }
-    
-        
     }
     
     // MARK - private methods

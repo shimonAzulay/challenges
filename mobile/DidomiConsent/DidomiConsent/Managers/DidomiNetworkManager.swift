@@ -9,9 +9,10 @@
 import UIKit
 
 struct DidomiNetworkResult {
-    var statusCode: Int
-    var response: String
-    var error: String
+    var sentConsentStatus: String?
+    var statusCode: Int?
+    var response: String?
+    var error: String?
 }
 
 struct DidomiNetworkConfiguration {
@@ -20,6 +21,7 @@ struct DidomiNetworkConfiguration {
     var dateFormat: DidomiNetworkDateFormat
 }
 
+// TODO - change to ISO8601UTC
 enum DidomiNetworkDateFormat: String {
     case ISO8601UTC = "yyyyMMdd'T'HHmmssZ"
 }
@@ -40,7 +42,7 @@ class DidomiNetworkManager: NSObject {
      - Parameter consentStatus: The consent status string.
      - Parameter completion: Will be called on server response with DidomiNetworkResult
      */
-    func sendConsentAsync(consentStatus: String, completion: (_ result: DidomiNetworkResult)->()) {
+    func sendConsentAsync(consentStatus: String, completion: @escaping (_ result: DidomiNetworkResult)->()) {
         let url = URL(string: configuration.endpointURL)!
         var request = URLRequest(url: url)
         let date = Date()
@@ -58,17 +60,24 @@ class DidomiNetworkManager: NSObject {
         request.setValue(DidomiConstants.Network.ContentHeaderJsonValue, forHTTPHeaderField: DidomiConstants.Network.ContentHeaderTypeKey)
         request.httpBody = payloadJsonData
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            var statusCode: Int?
+            var errorString: String?
+            var responseString: String?
+            
             if let error = error {
-                print("error: \(error)")
+                errorString = error.localizedDescription
+                DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.Network.ResponseError) \(error)")
             } else {
                 if let response = response as? HTTPURLResponse {
-                    print("statusCode: \(response.statusCode)")
+                    statusCode = response.statusCode
+                    DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.Network.ResponseStatusCode) \(response.statusCode)")
                 }
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    print("data: \(dataString)")
+                    responseString = dataString
+                    DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.Network.ResponseData) \(dataString)")
                 }
             }
-            // TODO call complition handler
+            completion(DidomiNetworkResult(sentConsentStatus: consentStatus, statusCode: statusCode, response: responseString, error: errorString))
         }
         task.resume()
     }

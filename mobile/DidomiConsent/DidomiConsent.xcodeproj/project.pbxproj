@@ -16,6 +16,7 @@
 		DF00572123C90B1D00F9F678 /* DidomiNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00571C23C90B1D00F9F678 /* DidomiNetworkManager.swift */; };
 		DF00572223C90B1D00F9F678 /* DidomiConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00571D23C90B1D00F9F678 /* DidomiConsentManager.swift */; };
 		DF0058B523CA349500F9F678 /* DidomiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0058B423CA349500F9F678 /* DidomiConstants.swift */; };
+		DF0058B923CB350D00F9F678 /* DidomiLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0058B823CB350D00F9F678 /* DidomiLogManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		DF00571C23C90B1D00F9F678 /* DidomiNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DidomiNetworkManager.swift; sourceTree = "<group>"; };
 		DF00571D23C90B1D00F9F678 /* DidomiConsentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DidomiConsentManager.swift; sourceTree = "<group>"; };
 		DF0058B423CA349500F9F678 /* DidomiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidomiConstants.swift; sourceTree = "<group>"; };
+		DF0058B823CB350D00F9F678 /* DidomiLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidomiLogManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				DF00571A23C90B1C00F9F678 /* DidomiVisualConsentManager.swift */,
 				DF00571B23C90B1D00F9F678 /* DidomiPersistenceManager.swift */,
 				DF00571C23C90B1D00F9F678 /* DidomiNetworkManager.swift */,
+				DF0058B823CB350D00F9F678 /* DidomiLogManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF0058B923CB350D00F9F678 /* DidomiLogManager.swift in Sources */,
 				DF00572223C90B1D00F9F678 /* DidomiConsentManager.swift in Sources */,
 				DF0058B523CA349500F9F678 /* DidomiConstants.swift in Sources */,
 				DF00572123C90B1D00F9F678 /* DidomiNetworkManager.swift in Sources */,

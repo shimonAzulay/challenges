@@ -33,11 +33,12 @@ public class DidomiConsentManager : NSObject {
      Check status of consent. If status is Undefined
      */
     public func checkConsentStatus() {
+    
         managerLock.lock()
-        let consentStatus = DidomiPersistenceManager.shared.retriveConsentStatus()
+        consentStatus = DidomiConsentStatus(rawValue: DidomiPersistenceManager.shared.retriveConsentStatus()) ?? .Undefined
         managerLock.unlock()
         
-        if (consentStatus == DidomiConstants.ConsentStatusStrings.Undefined) {
+        if (getConsentStatus() == .Undefined) {
             showConsent()
         }
     }
@@ -64,12 +65,20 @@ public class DidomiConsentManager : NSObject {
         managerLock.lock()
         if (consentStatus != status) {
             consentStatus = status
+            DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.ConsentManager.ConsentChanged) \(consentStatus.rawValue)")
             DidomiPersistenceManager.shared.persisteConsentStatus(consentStatus: status.rawValue)
             
             // Notify server
-            DidomiNetworkManager.shared.sendConsentAsync(consentStatus: consentStatus.rawValue) { (DidomiNetworkResult) in
-                // Nothing to do.
-                // TODO change this to null?
+            DidomiNetworkManager.shared.sendConsentAsync(consentStatus: consentStatus.rawValue) { (result: DidomiNetworkResult) in
+                if let statusCode = result.statusCode {
+                    // Successful response
+                    if 200 ... 299 ~= statusCode, let consentStatus = result.sentConsentStatus {
+                        DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.ConsentManager.ConsentStatusSentToServer) \(consentStatus)")
+                    }
+                } else if let consentStatus = result.sentConsentStatus {
+                    // Unsuccessful response
+                    DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.ConsentManager.ConsentStatusSendToServerError) \(consentStatus)")
+                }
             }
         }
         managerLock.unlock()
