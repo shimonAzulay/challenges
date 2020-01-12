@@ -13,8 +13,6 @@
 		DF00588523CA0CA000F9F678 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF00588323CA0CA000F9F678 /* Main.storyboard */; };
 		DF00588723CA0CA000F9F678 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF00588623CA0CA000F9F678 /* Assets.xcassets */; };
 		DF00588A23CA0CA000F9F678 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF00588823CA0CA000F9F678 /* LaunchScreen.storyboard */; };
-		DF00589523CA0CA100F9F678 /* TestAppIOS13Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00589423CA0CA100F9F678 /* TestAppIOS13Tests.swift */; };
-		DF0058A023CA0CA100F9F678 /* TestAppIOS13UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00589F23CA0CA100F9F678 /* TestAppIOS13UITests.swift */; };
 		DF0058AF23CA0CAD00F9F678 /* DidomiConsent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF0058AE23CA0CAD00F9F678 /* DidomiConsent.framework */; };
 		DF0058B023CA0CAD00F9F678 /* DidomiConsent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DF0058AE23CA0CAD00F9F678 /* DidomiConsent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -60,11 +58,7 @@
 		DF00588923CA0CA000F9F678 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF00588B23CA0CA000F9F678 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF00589023CA0CA100F9F678 /* TestAppIOS13Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestAppIOS13Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF00589423CA0CA100F9F678 /* TestAppIOS13Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppIOS13Tests.swift; sourceTree = "<group>"; };
-		DF00589623CA0CA100F9F678 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF00589B23CA0CA100F9F678 /* TestAppIOS13UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestAppIOS13UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF00589F23CA0CA100F9F678 /* TestAppIOS13UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAppIOS13UITests.swift; sourceTree = "<group>"; };
-		DF0058A123CA0CA100F9F678 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF0058AE23CA0CAD00F9F678 /* DidomiConsent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DidomiConsent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -98,8 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				DF00587C23CA0CA000F9F678 /* TestAppIOS13 */,
-				DF00589323CA0CA100F9F678 /* TestAppIOS13Tests */,
-				DF00589E23CA0CA100F9F678 /* TestAppIOS13UITests */,
 				DF00587B23CA0CA000F9F678 /* Products */,
 				DF0058AD23CA0CAD00F9F678 /* Frameworks */,
 			);
@@ -127,24 +119,6 @@
 				DF00588B23CA0CA000F9F678 /* Info.plist */,
 			);
 			path = TestAppIOS13;
-			sourceTree = "<group>";
-		};
-		DF00589323CA0CA100F9F678 /* TestAppIOS13Tests */ = {
-			isa = PBXGroup;
-			children = (
-				DF00589423CA0CA100F9F678 /* TestAppIOS13Tests.swift */,
-				DF00589623CA0CA100F9F678 /* Info.plist */,
-			);
-			path = TestAppIOS13Tests;
-			sourceTree = "<group>";
-		};
-		DF00589E23CA0CA100F9F678 /* TestAppIOS13UITests */ = {
-			isa = PBXGroup;
-			children = (
-				DF00589F23CA0CA100F9F678 /* TestAppIOS13UITests.swift */,
-				DF0058A123CA0CA100F9F678 /* Info.plist */,
-			);
-			path = TestAppIOS13UITests;
 			sourceTree = "<group>";
 		};
 		DF0058AD23CA0CAD00F9F678 /* Frameworks */ = {
@@ -231,6 +205,7 @@
 					};
 					DF00589A23CA0CA100F9F678 = {
 						CreatedOnToolsVersion = 11.2;
+						LastSwiftMigration = 1120;
 						TestTargetID = DF00587923CA0CA000F9F678;
 					};
 				};
@@ -297,7 +272,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF00589523CA0CA100F9F678 /* TestAppIOS13Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,7 +279,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF0058A023CA0CA100F9F678 /* TestAppIOS13UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +511,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TestAppIOS13UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -547,6 +521,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.shimon.azulay.TestAppIOS13UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = TestAppIOS13;
@@ -557,6 +532,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TestAppIOS13UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

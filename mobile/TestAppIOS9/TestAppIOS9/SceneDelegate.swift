@@ -1,14 +1,15 @@
 //
 //  SceneDelegate.swift
-//  TestAppIOS13
+//  TestAppIOS9
 //
-//  Created by Shimon Azulay on 11/01/2020.
+//  Created by Shimon Azulay on 12/01/2020.
 //  Copyright © 2020 shimon.azulay. All rights reserved.
 //
 
 import UIKit
 import DidomiConsent
 
+@available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -31,8 +32,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-        
-        DidomiConsentManager.checkConsentStatus()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DF00570723C90AC900F9F678 /* DidomiConsent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF0056FD23C90AC900F9F678 /* DidomiConsent.framework */; };
-		DF00570C23C90AC900F9F678 /* DidomiConsentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00570B23C90AC900F9F678 /* DidomiConsentTests.swift */; };
+		DF00570C23C90AC900F9F678 /* DidomiConsentManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00570B23C90AC900F9F678 /* DidomiConsentManagerTests.swift */; };
 		DF00570E23C90AC900F9F678 /* DidomiConsent.h in Headers */ = {isa = PBXBuildFile; fileRef = DF00570023C90AC900F9F678 /* DidomiConsent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DF00571E23C90B1D00F9F678 /* DidomiConsent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00571823C90B1C00F9F678 /* DidomiConsent.swift */; };
 		DF00571F23C90B1D00F9F678 /* DidomiVisualConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF00571A23C90B1C00F9F678 /* DidomiVisualConsentManager.swift */; };
@@ -34,7 +34,7 @@
 		DF00570023C90AC900F9F678 /* DidomiConsent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DidomiConsent.h; sourceTree = "<group>"; };
 		DF00570123C90AC900F9F678 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF00570623C90AC900F9F678 /* DidomiConsentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DidomiConsentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF00570B23C90AC900F9F678 /* DidomiConsentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidomiConsentTests.swift; sourceTree = "<group>"; };
+		DF00570B23C90AC900F9F678 /* DidomiConsentManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidomiConsentManagerTests.swift; sourceTree = "<group>"; };
 		DF00570D23C90AC900F9F678 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF00571823C90B1C00F9F678 /* DidomiConsent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DidomiConsent.swift; sourceTree = "<group>"; };
 		DF00571A23C90B1C00F9F678 /* DidomiVisualConsentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DidomiVisualConsentManager.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		DF00570A23C90AC900F9F678 /* DidomiConsentTests */ = {
 			isa = PBXGroup;
 			children = (
-				DF00570B23C90AC900F9F678 /* DidomiConsentTests.swift */,
+				DF00570B23C90AC900F9F678 /* DidomiConsentManagerTests.swift */,
 				DF00570D23C90AC900F9F678 /* Info.plist */,
 			);
 			path = DidomiConsentTests;
@@ -247,7 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF00570C23C90AC900F9F678 /* DidomiConsentTests.swift in Sources */,
+				DF00570C23C90AC900F9F678 /* DidomiConsentManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,7 +393,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = DidomiConsent/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -419,7 +419,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = DidomiConsent/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

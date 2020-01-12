@@ -49,6 +49,6 @@ struct DidomiConstants {
         static let ConsentStatusSentToServer = "Consent status has sent to server. Sent status:"
         static let ConsentStatusSendToServerError = "Consent status has not sent to server due to an error."
         static let ConsentChanged = "Consent status has changed. New status:"
-        //static let StatusCode = "Consent status has changed. New status:"
+        static let DispatchQueueLabel = "DidomiConsent.serial.dispatch.queue"
     }
 }
