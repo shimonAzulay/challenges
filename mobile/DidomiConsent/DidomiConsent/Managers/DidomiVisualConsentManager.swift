@@ -70,7 +70,7 @@ class DidomiVisualConsentManager: NSObject {
         }
 
         window?.backgroundColor = .clear
-        window?.windowLevel = .alert
+        window?.windowLevel += 1
         window?.rootViewController = UIViewController()
         window?.makeKeyAndVisible()
     }

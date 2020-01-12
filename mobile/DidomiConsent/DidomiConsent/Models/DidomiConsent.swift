@@ -10,9 +10,9 @@ import Foundation
 
 struct DidomiConsent {
     
-    public var consentTitle: String
-    public var consentMassage: String
-    public var consentStatus : DidomiConsentStatus
+    var consentTitle: String
+    var consentMassage: String
+    
 }
 
 

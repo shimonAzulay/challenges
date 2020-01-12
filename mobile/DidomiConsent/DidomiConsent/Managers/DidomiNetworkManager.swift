@@ -16,6 +16,12 @@ struct DidomiNetworkResult {
 
 struct DidomiNetworkConfiguration {
     var reties: Int
+    var endpointURL: String
+    var dateFormat: DidomiNetworkDateFormat
+}
+
+enum DidomiNetworkDateFormat: String {
+    case ISO8601UTC = "yyyyMMdd'T'HHmmssZ"
 }
 
 class DidomiNetworkManager: NSObject {
@@ -35,22 +41,22 @@ class DidomiNetworkManager: NSObject {
      - Parameter completion: Will be called on server response with DidomiNetworkResult
      */
     func sendConsentAsync(consentStatus: String, completion: (_ result: DidomiNetworkResult)->()) {
-        let url = URL(string: DidomiConstants.Network.EndpointURL)!
+        let url = URL(string: configuration.endpointURL)!
         var request = URLRequest(url: url)
         let date = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = DidomiConstants.Network.ISO8601UTC
+        dateFormatter.dateFormat = configuration.dateFormat.rawValue
         dateFormatter.string(from: date)
-        let json: [String: String] = [
+        let payloadJson: [String: String] = [
             DidomiConstants.Network.PayloadConsentStatusKey: consentStatus,
             DidomiConstants.Network.PayloadConsentDeviceIdKey: UIDevice.current.identifierForVendor?.uuidString ?? DidomiConstants.Device.defaultDeviceId,
             DidomiConstants.Network.PayloadConsentDateKey: dateFormatter.string(from: date)
         ]
 
-        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        let payloadJsonData = try? JSONSerialization.data(withJSONObject: payloadJson)
         request.httpMethod = DidomiConstants.Network.PostRequest
         request.setValue(DidomiConstants.Network.ContentHeaderJsonValue, forHTTPHeaderField: DidomiConstants.Network.ContentHeaderTypeKey)
-        request.httpBody = jsonData
+        request.httpBody = payloadJsonData
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 print("error: \(error)")
@@ -72,22 +78,17 @@ class DidomiNetworkManager: NSObject {
      - Parameter configuration: The new configuration.
      */
     func setNetworkConfiguration(configuration: DidomiNetworkConfiguration) {
-        // Check null
+        
     }
     
     // MARK - private methods
     
     private override init() {
-        configuration = DidomiNetworkConfiguration(reties: 5)
+        configuration = DidomiNetworkConfiguration(reties: 5, endpointURL: DidomiConstants.Network.EndpointURL, dateFormat: DidomiNetworkDateFormat(rawValue: DidomiConstants.Network.ISO8601UTC)!)
         super.init()
     }
-    
     
     // MARK - attributes
     
     private var configuration: DidomiNetworkConfiguration
-    
-    
-    
-
 }

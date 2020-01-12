@@ -33,7 +33,10 @@ public class DidomiConsentManager : NSObject {
      Check status of consent. If status is Undefined
      */
     public func checkConsentStatus() {
+        managerLock.lock()
         let consentStatus = DidomiPersistenceManager.shared.retriveConsentStatus()
+        managerLock.unlock()
+        
         if (consentStatus == DidomiConstants.ConsentStatusStrings.Undefined) {
             showConsent()
         }
@@ -44,7 +47,12 @@ public class DidomiConsentManager : NSObject {
      - Returns: DidomiConsentStatus.
      */
     public func getConsentStatus() -> DidomiConsentStatus {
-        return currentConsent.consentStatus
+        var currentStatus = DidomiConsentStatus.Undefined
+        managerLock.lock()
+        currentStatus = consentStatus
+        managerLock.unlock()
+        
+        return currentStatus
     }
     
     /**
@@ -53,16 +61,18 @@ public class DidomiConsentManager : NSObject {
      - Parameter status: The new status.
      */
     public func setConsentStatus(status: DidomiConsentStatus) {
-        if (currentConsent.consentStatus != status) {
-            currentConsent.consentStatus = status
+        managerLock.lock()
+        if (consentStatus != status) {
+            consentStatus = status
             DidomiPersistenceManager.shared.persisteConsentStatus(consentStatus: status.rawValue)
             
             // Notify server
-            DidomiNetworkManager.shared.sendConsentAsync(consentStatus: currentConsent.consentStatus.rawValue) { (DidomiNetworkResult) in
+            DidomiNetworkManager.shared.sendConsentAsync(consentStatus: consentStatus.rawValue) { (DidomiNetworkResult) in
                 // Nothing to do.
                 // TODO change this to null?
             }
         }
+        managerLock.unlock()
     }
     
     /**
@@ -70,7 +80,7 @@ public class DidomiConsentManager : NSObject {
      This method will be run on main thread.
      */
     public func showConsent() {
-        DidomiVisualConsentManager.shared.showConsentDialog(consent: currentConsent) { (status: DidomiConsentStatus) -> () in
+        DidomiVisualConsentManager.shared.showConsentDialog(consent: consent) { (status: DidomiConsentStatus) -> () in
             self.setConsentStatus(status: status)
         }
     }
@@ -78,12 +88,16 @@ public class DidomiConsentManager : NSObject {
     // MARK - private methods
     
     private override init() {
-        self.currentConsent = DidomiConsent(consentTitle: "default", consentMassage: "default", consentStatus: .Undefined)
+        consentStatus = .Undefined
         super.init()
     }
     
     // MARK - attributs
     
-    private var currentConsent: DidomiConsent
+    private var consentStatus: DidomiConsentStatus
+    
+    private let consent = DidomiConsent(consentTitle: "default", consentMassage: "default")
+    
+    private let managerLock = NSLock()
 
 }
