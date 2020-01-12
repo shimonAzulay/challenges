@@ -19,7 +19,7 @@ public enum DidomiConsentStatus: String {
     case Deny = "deny"
 }
 
-public class DidomiConsentManager : NSObject {
+open class DidomiConsentManager : NSObject {
     
     // MARK - API
     
@@ -28,14 +28,13 @@ public class DidomiConsentManager : NSObject {
      Check status of consent. If status is Undefined
      */
     public static func checkConsentStatus() {
-        
         if #available(iOS 13.0, *) {
-            NotificationCenter.default.addObserver(DidomiConsentManager.self,
-                                                   selector: #selector(DidomiConsentManager.checkConsetStatusInternal),
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(self.checkConsetStatusInternal),
                                                    name: UIScene.didActivateNotification,
                                                    object: nil)
         } else {
-            DidomiConsentManager.checkConsetStatusInternal()
+            self.checkConsetStatusInternal()
         }
     }
     
@@ -44,10 +43,10 @@ public class DidomiConsentManager : NSObject {
      - Note: This method can be overriden.
      - Returns: DidomiConsentStatus.
      */
-    public class func getConsentStatus() -> DidomiConsentStatus {
+    open class func getConsentStatus() -> DidomiConsentStatus {
         var currentStatus = DidomiConsentStatus.Undefined
         managerSerialQueue.sync {
-            currentStatus = DidomiConsentManager.consentStatus
+            currentStatus = self.consentStatus
         }
         
         return currentStatus
@@ -58,9 +57,9 @@ public class DidomiConsentManager : NSObject {
      - Note: This method can be overriden.
      - Parameter status: The new status.
      */
-    public class func setConsentStatus(status: DidomiConsentStatus) {
+    open class func setConsentStatus(status: DidomiConsentStatus) {
         managerSerialQueue.sync {
-            DidomiConsentManager.consentStatus = status
+            self.consentStatus = status
             DidomiLogManager.shared.log(logMessage: "\(DidomiConstants.ConsentManager.ConsentChanged) \(consentStatus.rawValue)")
             DidomiPersistenceManager.shared.persisteConsentStatus(consentStatus: status.rawValue)
             
@@ -86,9 +85,9 @@ public class DidomiConsentManager : NSObject {
      - Note: This method can be overriden for more complex UI.
      - Important: This method should be run on main thread.
      */
-    public class func showConsent() {
+    open class func showConsent() {
         DidomiVisualConsentManager.shared.showConsentDialog() { (status: DidomiConsentStatus) -> () in
-            DidomiConsentManager.setConsentStatus(status: status)
+            self.setConsentStatus(status: status)
         }
     }
     
@@ -98,13 +97,13 @@ public class DidomiConsentManager : NSObject {
         super.init()
     }
     
-    @objc private static func checkConsetStatusInternal() {
+    @objc static func checkConsetStatusInternal() {
         managerSerialQueue.sync {
-            DidomiConsentManager.consentStatus = DidomiConsentStatus(rawValue: DidomiPersistenceManager.shared.retriveConsentStatus()) ?? .Undefined
+            self.consentStatus = DidomiConsentStatus(rawValue: DidomiPersistenceManager.shared.retriveConsentStatus()) ?? .Undefined
         }
         
         if (getConsentStatus() == .Undefined) {
-            showConsent()
+            self.showConsent()
         }
     }
     

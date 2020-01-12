@@ -15,6 +15,7 @@
 		DF53010A23CB702500183E87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF53010823CB702500183E87 /* LaunchScreen.storyboard */; };
 		DF53011323CB707E00183E87 /* DidomiConsent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF53011223CB707E00183E87 /* DidomiConsent.framework */; };
 		DF53011423CB707E00183E87 /* DidomiConsent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DF53011223CB707E00183E87 /* DidomiConsent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DF53012723CBBF1300183E87 /* MyCustomConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF53012623CBBF1300183E87 /* MyCustomConsentManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +42,7 @@
 		DF53010923CB702500183E87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF53010B23CB702500183E87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF53011223CB707E00183E87 /* DidomiConsent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DidomiConsent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF53012623CBBF1300183E87 /* MyCustomConsentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomConsentManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				DF5300FD23CB702400183E87 /* AppDelegate.swift */,
 				DF5300FF23CB702400183E87 /* SceneDelegate.swift */,
 				DF53010123CB702400183E87 /* ViewController.swift */,
+				DF53012623CBBF1300183E87 /* MyCustomConsentManager.swift */,
 				DF53010323CB702400183E87 /* Main.storyboard */,
 				DF53010623CB702500183E87 /* Assets.xcassets */,
 				DF53010823CB702500183E87 /* LaunchScreen.storyboard */,
@@ -167,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF53010223CB702400183E87 /* ViewController.swift in Sources */,
+				DF53012723CBBF1300183E87 /* MyCustomConsentManager.swift in Sources */,
 				DF5300FE23CB702400183E87 /* AppDelegate.swift in Sources */,
 				DF53010023CB702400183E87 /* SceneDelegate.swift in Sources */,
 			);

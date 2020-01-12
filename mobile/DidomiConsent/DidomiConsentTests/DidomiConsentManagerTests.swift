@@ -30,22 +30,22 @@ class DidomiConsentManagerTests: XCTestCase {
         DidomiConsentManager.setConsentStatus(status: .Deny)
         XCTAssertEqual(DidomiConsentManager.getConsentStatus(), .Deny)
     }
-    
+
     func testCheckConsentStatusUndefined() {
         DidomiConsentManagerMock.setConsentStatus(status: .Undefined)
-        DidomiConsentManagerMock.checkConsentStatus()
+        DidomiConsentManagerMock.checkConsetStatusInternal()
         XCTAssertTrue(DidomiConsentManagerMock.showConsentCalled)
     }
     
     func testCheckConsentStatusAccept() {
         DidomiConsentManagerMock.setConsentStatus(status: .Accept)
-        DidomiConsentManagerMock.checkConsentStatus()
+        DidomiConsentManagerMock.checkConsetStatusInternal()
         XCTAssertFalse(DidomiConsentManagerMock.showConsentCalled)
     }
     
     func testCheckConsentStatusDeny() {
         DidomiConsentManagerMock.setConsentStatus(status: .Deny)
-        DidomiConsentManagerMock.checkConsentStatus()
+        DidomiConsentManagerMock.checkConsetStatusInternal()
         XCTAssertFalse(DidomiConsentManagerMock.showConsentCalled)
     }
 }
