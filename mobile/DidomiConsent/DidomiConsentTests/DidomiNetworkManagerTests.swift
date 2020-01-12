@@ -59,7 +59,7 @@ class DidomiNetworkManagerTests: XCTestCase {
             XCTAssertNil(result.statusCode)
             XCTAssertNil(result.response)
             XCTAssertNotNil(result.sentConsentStatus)
-            XCTAssertEqual(result.error!, DidomiConstants.Network.BadConfigurationError)
+            XCTAssertEqual(result.error!, DidomiConstants.Network.NetworkSetupError)
             XCTAssertEqual(result.sentConsentStatus!, DidomiConstants.ConsentStatusStrings.Accept)
             
             expectation.fulfill()

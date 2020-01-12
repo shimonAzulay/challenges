@@ -28,8 +28,6 @@ class DidomiNetworkManager: NSObject {
      */
     static let shared = DidomiNetworkManager()
     
-    // TODO enforce only known statuses
-    
     /**
      Send consent status to server asynchronous.
      - Parameter consentStatus: The consent status string.
@@ -62,7 +60,7 @@ class DidomiNetworkManager: NSObject {
             
             task.resume()
         } else {
-            completion(DidomiNetworkResult(sentConsentStatus: consentStatus, statusCode: nil, response: nil, error: DidomiConstants.Network.BadConfigurationError))
+            completion(DidomiNetworkResult(sentConsentStatus: consentStatus, statusCode: nil, response: nil, error: DidomiConstants.Network.NetworkSetupError))
         }
     }
 
@@ -80,7 +78,7 @@ class DidomiNetworkManager: NSObject {
             request.httpBody = payloadData
             return request
         }
-        
+        DidomiLogManager.shared.log(logMessage: DidomiConstants.Network.RequestError)
         return nil
     }
     
@@ -96,8 +94,11 @@ class DidomiNetworkManager: NSObject {
             DidomiConstants.Network.PayloadConsentDateKey: dateFormatter.string(from: date)
         ]
         
-        let payloadJsonData = try? JSONSerialization.data(withJSONObject: payloadJson)
+        if let payloadJsonData = try? JSONSerialization.data(withJSONObject: payloadJson) {
+            return payloadJsonData
+        }
         
-        return payloadJsonData
+        DidomiLogManager.shared.log(logMessage: DidomiConstants.Network.PayloadError)
+        return nil
     }
 }

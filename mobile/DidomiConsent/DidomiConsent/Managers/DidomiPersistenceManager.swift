@@ -15,10 +15,6 @@ class DidomiPersistenceManager: NSObject {
     */
     static let shared = DidomiPersistenceManager()
     
-    // TODO Null check or optional
-    // TODO enforce known statuses
-    // TODO errors?
-    
     /**
      Persiste consent status.
      - Parameter consentStatus: The consent status to persiste.

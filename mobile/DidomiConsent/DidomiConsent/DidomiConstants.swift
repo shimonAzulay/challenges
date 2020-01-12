@@ -26,7 +26,9 @@ struct DidomiConstants {
         static let ResponseError = "Respose error:"
         static let ResponseStatusCode = "Respose status code:"
         static let ResponseData = "Respose data:"
-        static let BadConfigurationError = "Error due to bad configuration"
+        static let NetworkSetupError = "Error due to network setup."
+        static let PayloadError = "Error on build payload."
+        static let RequestError = "Error on build request."
     }
     
     struct Persistence {

@@ -82,7 +82,7 @@ class DidomiVisualConsentManager: NSObject {
     }
     
     func prepareConsentWindow() {
-        // TODO test it.
+
         // Check for scenes
         if #available(iOS 13, *) {
             let windowScenes = UIApplication.shared.connectedScenes.filter { $0.activationState == .foregroundActive }
