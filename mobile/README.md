@@ -11,7 +11,7 @@ Swift `4.0`, `4.2` & `5.0`. Ready for use on iOS 9.0+
 
 ### Manually
 
-Copy DidomiConsent.framework into your project and add it as a dependency.
+Build DidomiConsent proj and copy DidomiConsent.framework into your project and add it as a dependency.
 For network preposes enable `NSAppTransportSecurity`
  1. Open your Project target's info.plist file
  2. Add a Key called `NSAppTransportSecurity` as a Dictionary.
