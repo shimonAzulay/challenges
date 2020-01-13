@@ -13,7 +13,7 @@ class DidomiNetworkManagerTests: XCTestCase {
     
     func testSucces() {
         
-        let expectation = self.expectation(description: "Scaling")
+        let expectation = self.expectation(description: "Network")
         
         DidomiNetworkManager.shared.sendConsentAsync(consentStatus: DidomiConstants.ConsentStatusStrings.Accept, url: DidomiConstants.Network.EndpointURL) { (result: DidomiNetworkResult) in
             
@@ -33,7 +33,7 @@ class DidomiNetworkManagerTests: XCTestCase {
     
     func testFailure() {
         
-        let expectation = self.expectation(description: "Scaling")
+        let expectation = self.expectation(description: "Network")
         
         DidomiNetworkManager.shared.sendConsentAsync(consentStatus: DidomiConstants.ConsentStatusStrings.Accept, url: "http://www.fake.io") { (result: DidomiNetworkResult) in
             
@@ -51,7 +51,7 @@ class DidomiNetworkManagerTests: XCTestCase {
     
     func testFailureBadConfiguration() {
         
-        let expectation = self.expectation(description: "Scaling")
+        let expectation = self.expectation(description: "Network")
         
         DidomiNetworkManager.shared.sendConsentAsync(consentStatus: DidomiConstants.ConsentStatusStrings.Accept, url: "") { (result: DidomiNetworkResult) in
             

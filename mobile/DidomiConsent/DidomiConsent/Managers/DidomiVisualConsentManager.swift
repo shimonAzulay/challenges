@@ -75,7 +75,7 @@ class DidomiVisualConsentManager: NSObject {
         
         if result == key {
             // Key has not been found on the Default table.
-            return nil
+            return "Default"
         }
         
         return result

@@ -45,6 +45,7 @@
 		DF0058B823CB350D00F9F678 /* DidomiLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidomiLogManager.swift; sourceTree = "<group>"; };
 		DF53012423CB9A7600183E87 /* DidomiNetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidomiNetworkManagerTests.swift; sourceTree = "<group>"; };
 		DF53012823CBD29B00183E87 /* DidomiPersistenceManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DidomiPersistenceManagerTests.swift; sourceTree = "<group>"; };
+		DF53016B23CC512600183E87 /* DidomiConsentUITesting.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DidomiConsentUITesting.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +61,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF00570723C90AC900F9F678 /* DidomiConsent.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF53016823CC512600183E87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +88,7 @@
 			children = (
 				DF0056FD23C90AC900F9F678 /* DidomiConsent.framework */,
 				DF00570623C90AC900F9F678 /* DidomiConsentTests.xctest */,
+				DF53016B23CC512600183E87 /* DidomiConsentUITesting.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +177,23 @@
 			productReference = DF00570623C90AC900F9F678 /* DidomiConsentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		DF53016A23CC512600183E87 /* DidomiConsentUITesting */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF53017023CC512600183E87 /* Build configuration list for PBXNativeTarget "DidomiConsentUITesting" */;
+			buildPhases = (
+				DF53016723CC512600183E87 /* Sources */,
+				DF53016823CC512600183E87 /* Frameworks */,
+				DF53016923CC512600183E87 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DidomiConsentUITesting;
+			productName = DidomiConsentUITesting;
+			productReference = DF53016B23CC512600183E87 /* DidomiConsentUITesting.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -183,6 +209,9 @@
 						LastSwiftMigration = 1120;
 					};
 					DF00570523C90AC900F9F678 = {
+						CreatedOnToolsVersion = 11.2;
+					};
+					DF53016A23CC512600183E87 = {
 						CreatedOnToolsVersion = 11.2;
 					};
 				};
@@ -202,6 +231,7 @@
 			targets = (
 				DF0056FC23C90AC900F9F678 /* DidomiConsent */,
 				DF00570523C90AC900F9F678 /* DidomiConsentTests */,
+				DF53016A23CC512600183E87 /* DidomiConsentUITesting */,
 			);
 		};
 /* End PBXProject section */
@@ -215,6 +245,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF00570423C90AC900F9F678 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF53016923CC512600183E87 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -244,6 +281,13 @@
 				DF53012523CB9A7600183E87 /* DidomiNetworkManagerTests.swift in Sources */,
 				DF53012923CBD29B00183E87 /* DidomiPersistenceManagerTests.swift in Sources */,
 				DF00570C23C90AC900F9F678 /* DidomiConsentManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF53016723CC512600183E87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +509,40 @@
 			};
 			name = Release;
 		};
+		DF53017123CC512600183E87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DidomiConsentUITesting/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shimon.azulay.DidomiConsentUITesting;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DF53017223CC512600183E87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DidomiConsentUITesting/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shimon.azulay.DidomiConsentUITesting;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -491,6 +569,15 @@
 			buildConfigurations = (
 				DF00571523C90AC900F9F678 /* Debug */,
 				DF00571623C90AC900F9F678 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF53017023CC512600183E87 /* Build configuration list for PBXNativeTarget "DidomiConsentUITesting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF53017123CC512600183E87 /* Debug */,
+				DF53017223CC512600183E87 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

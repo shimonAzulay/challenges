@@ -34,6 +34,13 @@
 			remoteGlobalIDString = DF00587923CA0CA000F9F678;
 			remoteInfo = TestAppIOS13;
 		};
+		DF53016223CC503300183E87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF00587223CA0CA000F9F678 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF00587923CA0CA000F9F678;
+			remoteInfo = TestAppIOS13;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,6 +71,7 @@
 		DF0058AE23CA0CAD00F9F678 /* DidomiConsent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DidomiConsent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF53011D23CB7D0000183E87 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Default.strings; sourceTree = "<group>"; };
 		DF53012223CB7D9400183E87 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DF53015D23CC503300183E87 /* DidomiConsentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DidomiConsentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +97,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DF53015A23CC503300183E87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -107,6 +122,7 @@
 				DF00587A23CA0CA000F9F678 /* TestAppIOS13.app */,
 				DF00589023CA0CA100F9F678 /* TestAppIOS13Tests.xctest */,
 				DF00589B23CA0CA100F9F678 /* TestAppIOS13UITests.xctest */,
+				DF53015D23CC503300183E87 /* DidomiConsentUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,6 +208,24 @@
 			productReference = DF00589B23CA0CA100F9F678 /* TestAppIOS13UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		DF53015C23CC503300183E87 /* DidomiConsentUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF53016423CC503300183E87 /* Build configuration list for PBXNativeTarget "DidomiConsentUITests" */;
+			buildPhases = (
+				DF53015923CC503300183E87 /* Sources */,
+				DF53015A23CC503300183E87 /* Frameworks */,
+				DF53015B23CC503300183E87 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DF53016323CC503300183E87 /* PBXTargetDependency */,
+			);
+			name = DidomiConsentUITests;
+			productName = DidomiConsentUITests;
+			productReference = DF53015D23CC503300183E87 /* DidomiConsentUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -214,6 +248,10 @@
 						LastSwiftMigration = 1120;
 						TestTargetID = DF00587923CA0CA000F9F678;
 					};
+					DF53015C23CC503300183E87 = {
+						CreatedOnToolsVersion = 11.2;
+						TestTargetID = DF00587923CA0CA000F9F678;
+					};
 				};
 			};
 			buildConfigurationList = DF00587523CA0CA000F9F678 /* Build configuration list for PBXProject "TestAppIOS13" */;
@@ -232,6 +270,7 @@
 				DF00587923CA0CA000F9F678 /* TestAppIOS13 */,
 				DF00588F23CA0CA100F9F678 /* TestAppIOS13Tests */,
 				DF00589A23CA0CA100F9F678 /* TestAppIOS13UITests */,
+				DF53015C23CC503300183E87 /* DidomiConsentUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -257,6 +296,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		DF00589923CA0CA100F9F678 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF53015B23CC503300183E87 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -290,6 +336,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DF53015923CC503300183E87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -302,6 +355,11 @@
 			isa = PBXTargetDependency;
 			target = DF00587923CA0CA000F9F678 /* TestAppIOS13 */;
 			targetProxy = DF00589C23CA0CA100F9F678 /* PBXContainerItemProxy */;
+		};
+		DF53016323CC503300183E87 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF00587923CA0CA000F9F678 /* TestAppIOS13 */;
+			targetProxy = DF53016223CC503300183E87 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -572,6 +630,42 @@
 			};
 			name = Release;
 		};
+		DF53016523CC503300183E87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DidomiConsentUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shimon.azulay.DidomiConsentUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TestAppIOS13;
+			};
+			name = Debug;
+		};
+		DF53016623CC503300183E87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = DidomiConsentUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.shimon.azulay.DidomiConsentUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TestAppIOS13;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -607,6 +701,15 @@
 			buildConfigurations = (
 				DF0058AB23CA0CA100F9F678 /* Debug */,
 				DF0058AC23CA0CA100F9F678 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF53016423CC503300183E87 /* Build configuration list for PBXNativeTarget "DidomiConsentUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF53016523CC503300183E87 /* Debug */,
+				DF53016623CC503300183E87 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

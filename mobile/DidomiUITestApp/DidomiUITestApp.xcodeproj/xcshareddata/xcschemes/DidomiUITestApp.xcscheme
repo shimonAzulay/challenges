@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DF00587923CA0CA000F9F678"
-               BuildableName = "TestAppIOS13.app"
-               BlueprintName = "TestAppIOS13"
-               ReferencedContainer = "container:TestAppIOS13.xcodeproj">
+               BlueprintIdentifier = "DF5301E923CC5CED00183E87"
+               BuildableName = "DidomiUITestApp.app"
+               BlueprintName = "DidomiUITestApp"
+               ReferencedContainer = "container:DidomiUITestApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,30 +32,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DF00588F23CA0CA100F9F678"
-               BuildableName = "TestAppIOS13Tests.xctest"
-               BlueprintName = "TestAppIOS13Tests"
-               ReferencedContainer = "container:TestAppIOS13.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DF00589A23CA0CA100F9F678"
-               BuildableName = "TestAppIOS13UITests.xctest"
-               BlueprintName = "TestAppIOS13UITests"
-               ReferencedContainer = "container:TestAppIOS13.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DF53015C23CC503300183E87"
-               BuildableName = "DidomiConsentUITests.xctest"
-               BlueprintName = "DidomiConsentUITests"
-               ReferencedContainer = "container:TestAppIOS13.xcodeproj">
+               BlueprintIdentifier = "DF5301FF23CC5CEE00183E87"
+               BuildableName = "DidomiUITestAppUITests.xctest"
+               BlueprintName = "DidomiUITestAppUITests"
+               ReferencedContainer = "container:DidomiUITestApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -74,10 +54,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DF00587923CA0CA000F9F678"
-            BuildableName = "TestAppIOS13.app"
-            BlueprintName = "TestAppIOS13"
-            ReferencedContainer = "container:TestAppIOS13.xcodeproj">
+            BlueprintIdentifier = "DF5301E923CC5CED00183E87"
+            BuildableName = "DidomiUITestApp.app"
+            BlueprintName = "DidomiUITestApp"
+            ReferencedContainer = "container:DidomiUITestApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -91,10 +71,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DF00587923CA0CA000F9F678"
-            BuildableName = "TestAppIOS13.app"
-            BlueprintName = "TestAppIOS13"
-            ReferencedContainer = "container:TestAppIOS13.xcodeproj">
+            BlueprintIdentifier = "DF5301E923CC5CED00183E87"
+            BuildableName = "DidomiUITestApp.app"
+            BlueprintName = "DidomiUITestApp"
+            ReferencedContainer = "container:DidomiUITestApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

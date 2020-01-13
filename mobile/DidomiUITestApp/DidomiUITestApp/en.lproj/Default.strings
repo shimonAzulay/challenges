@@ -1,0 +1,9 @@
+/* 
+  Default.strings
+  DidomiUITestApp
+
+  Created by Shimon Azulay on 13/01/2020.
+  Copyright © 2020 shimon.azulay. All rights reserved.
+*/
+"Didomi-consent-title-key" = "GPS location access consent";
+"Didomi-consent-message-key" = "This application will access your GPS location. Please accept.";
